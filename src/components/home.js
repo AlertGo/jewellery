@@ -88,10 +88,34 @@ class UserSelect extends React.Component {
 		})
 	}
 	showFindTabState (x){
+		var _self = this ;
+		var s_T = 0 ;
+		var active_dom = this.refs.activeScroll ;
 		this.setState({
 			f_state:x
+		},function (){
+			console.log(x)
+			if(x == 0) {
+				s_T = 0 ;
+			}else if(x == 1) {
+				s_T = 25 * 5 ;
+			}else if(x == 2) {
+				s_T = 25 * 17 ;
+			}else if(x == 3) {
+				s_T = 25 * 22 ;
+			}
+			// console.log(s_T,active_dom.scrollTop)
+			active_dom.scrollTop = s_T ;
 		})
 	}
+	getNodeTop(obj){
+        var L=0;
+        while(obj){
+            L += obj.offsetTop ;
+            obj = obj.offsetParent ;
+        }
+        return L
+    }
 	render (){
 		return (
 			<div className={'allorg'+" "+(this.props.pState!=0?'show':'hide')}>
@@ -127,11 +151,10 @@ class UserSelect extends React.Component {
 								<li onClick={() => {this.showFindTabState(1)}} m="g">G-I<span className={this.state.f_state==1?"citeon":''}></span></li>
 								<li onClick={() => {this.showFindTabState(2)}} m="j">J-X<span className={this.state.f_state==2?"citeon":''}></span></li>
 								<li onClick={() => {this.showFindTabState(3)}} m="y">Y-Z<span className={this.state.f_state==3?"citeon":''}></span></li>
-								<div className="clearfix"></div>
 							</ul>
 						</div>
 						<div className="stock_org gn">
-							<ul>
+							<ul ref="activeScroll">
 								{
 									this.state.list_msg.Domestic.map((val,i) => {
 										return (

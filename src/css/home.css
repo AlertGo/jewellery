@@ -211,7 +211,6 @@ input::-webkit-input-placeholder{
     top: 21px;
 }
 .hot_ctg .al {
-    float: left;
     line-height: 22px;
 }
 .clearfix {
@@ -231,16 +230,23 @@ input::-webkit-input-placeholder{
 .cat {
     height: 32px;
 }
+.cat ul {
+	height: 32px;
+	font-size: 0px;
+}
 .cat li {
     cursor: pointer;
     position: relative;
-    float: left;
+    display: inline-block;
+    vertical-align: top;
     width: 45px;
     margin-top: 10px;
     padding-bottom: 3px;
     text-align: center;
     line-height: 22px;
     font-size: 12px;
+    left: 0;
+    top: 0;
 }
 .cat .citeon {
     position: absolute;
