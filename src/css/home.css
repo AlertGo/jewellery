@@ -240,6 +240,7 @@ input::-webkit-input-placeholder{
     padding-bottom: 3px;
     text-align: center;
     line-height: 22px;
+    font-size: 12px;
 }
 .cat .citeon {
     position: absolute;

@@ -1,8 +1,4 @@
 import React from 'react'
-import { render, findDOMNode } from 'react-dom'
-import {
-  	browserHistory, Router, Route, IndexRoute, Link
-} from 'react-router'
 import '.././css/home.css'
 import logoimg from '.././img/logo.png'
 // 无状态组件 LOGO
@@ -35,95 +31,127 @@ class UserSelect extends React.Component {
 	constructor (){
 		super() ;
 		this.state = {
-			c_state:0
+			c_state:0,
+			f_state:0,
+			appraisal_title:"常用",
+			list_msg:{
+				Common:['北大宝石鉴定中心','北京大学宝石鉴定中心深圳实验室','北京地大宝石检验中心','北京协宝珠宝检测中心','比利时钻石高层议会(HRD)'],
+				Domestic:[	'北大宝石鉴定中心',
+							'北京大学宝石鉴定中心深圳实验室',
+							'北京地大宝石检验中心',
+							'北京协宝珠宝检测中心(BXB)',
+							'福建省贵金属和珠宝玉石产品质量监督检验中心',
+							'广东省地质科学研究所珠宝玉石鉴定中心',
+							'广东省金银珠宝检测中心(GDTC)',
+							'广东省珠宝玉石及贵金属检测中心(GTC)',
+							'广东省珠海市金银珠宝检测中心',
+							'国家黄金钻石制品质量监督检验中心(NGDTC)',
+							'国家金银制品质量鉴督检验中心(南京)(NGSTC)',
+							'国家首饰质量监督检验中心(NJQSIC)',
+							'国家珠宝玉石质量监督检验中心(NGTC)',
+							'国土资源部广州矿产资源监督检测中心',
+							'国土资源部郑州矿产资源利用评价中心',
+							'国土资源部贵阳矿产资源监督检测中心(GGIC)',
+							'华东理工大学宝石检测中心',
+							'江苏省黄金珠宝检测中心',
+							'辽宁省宝玉石质量监督检验中心',
+							'上海珠宝测试鉴定处',
+							'陕西省宝玉石金银首饰质量监督检验站',
+							'新疆岩矿宝玉石产品质量监督检验站',
+							'燕山大学珠宝玉石鉴定研究中心',
+							'云南省德宏州质量技术监督瑞丽监测站',
+							'云南省珠宝玉石质量监督检验研究院',
+							'浙江省黄金珠宝饰品质量检测中心(GGC)',
+							'中国地质大学(武汉)珠宝检测中心(GIC)',
+							'中国商业联合会珠宝首饰质量监督检测中心(CGJC)',
+							'中华全国工商联珠宝业商会珠宝检测研究中心(CCGTC)',
+							'中检质技(北京)金银珠宝质量检验中心(CQT)',
+							'中维珠宝玉石质量检测中心(JWJC)'
+				],
+				Abroad:[
+					'比利时钻石高层议会',
+					'国际宝石学院',
+					'美国宝石学院',
+					'美国宝玉石协会'
+				]
+
+			}
 		}
 	}
-	componentDidMount(){
+	componentDidMount (){
 		console.log(this)
+	}
+	showTabState (x,title){
+		this.setState({
+			c_state:x,
+			appraisal_title:title
+		})
+	}
+	showFindTabState (x){
+		this.setState({
+			f_state:x
+		})
 	}
 	render (){
 		return (
 			<div className={'allorg'+" "+(this.props.pState!=0?'show':'hide')}>
 					<h4>
-						<span id="tabtext">常用</span>鉴定机构
+						<span id="tabtext">{this.state.appraisal_title}</span>鉴定机构
 					</h4>
 					<div id="hot_ctg" className="hot_ctg">
 						<ul>
-							<li className="citeon">常用<span className="arrow"></span></li>
-							<li m="in">国内<span></span></li>
-							<li m="out">国外<span></span></li>
+							<li className={this.state.c_state==0?'citeon':''} onClick={() => {this.showTabState(0,'常用')}}>常用<span className={this.state.c_state==0?'arrow':''}></span></li>
+							<li className={this.state.c_state==1?'citeon':''} onClick={() => {this.showTabState(1,'国内')}} m="in">国内<span className={this.state.c_state==1?'arrow':''}></span></li>
+							<li className={this.state.c_state==2?'citeon':''} onClick={() => {this.showTabState(2,'国外')}} m="out">国外<span className={this.state.c_state==2?'arrow':''}></span></li>
 						</ul>
 						<p className="al"><a style={{color:'#333'}} href="http://www.aizhubao.com/" target="_blank">专业鉴定师估价</a></p>
 						<div className="clearfix"></div>
 					</div>
-					<div className="often_org t orgarea" m="常用">
+					<div className={"often_org t orgarea"+" "+(this.state.c_state==0?'show':'hide')} m="常用">
 						<div className="stock_org">
 							<ul>
-							<li><a href="javascript:;" no="005">北大宝石鉴定中心</a></li>
-							
-							<li><a href="javascript:;" no="037">北京大学宝石鉴定中心深圳实验室</a></li>
-							
-							<li><a href="javascript:;" no="007">北京地大宝石检验中心</a></li>
-							
-							<li><a href="javascript:;" no="033">北京协宝珠宝检测中心(BXB)</a></li>
-							
-							<li><a href="javascript:;" no="017">比利时钻石高层议会(HRD)</a></li>
-							 							</ul>
+								{
+									this.state.list_msg.Common.map((val,i) => {
+										return (
+											<li key={i} onClick={(e) => this.props.selectApp(e,val)} ><a href="javascript:;">{val}</a></li>
+										)
+									})
+								}
+							</ul>
 						</div>
 					</div>
-					<div className="domestic_org orgarea" m="国内" style={{display: 'none'}}>
+					<div className={"domestic_org orgarea"+" "+(this.state.c_state==1?'show':'hide')} m="国内">
 						<div className="cat">
 							<ul>
-								<li m="a">A-F<span className="citeon"></span></li>
-								<li m="g">G-I<span></span></li>
-								<li m="j">J-X<span></span></li>
-								<li m="y">Y-Z<span></span></li>
+								<li onClick={() => {this.showFindTabState(0)}} m="a">A-F<span className={this.state.f_state==0?"citeon":''}></span></li>
+								<li onClick={() => {this.showFindTabState(1)}} m="g">G-I<span className={this.state.f_state==1?"citeon":''}></span></li>
+								<li onClick={() => {this.showFindTabState(2)}} m="j">J-X<span className={this.state.f_state==2?"citeon":''}></span></li>
+								<li onClick={() => {this.showFindTabState(3)}} m="y">Y-Z<span className={this.state.f_state==3?"citeon":''}></span></li>
 								<div className="clearfix"></div>
 							</ul>
 						</div>
 						<div className="stock_org gn">
 							<ul>
-							<li><a href="javascript:;" no="005" name="b">北大宝石鉴定中心</a></li>
-							<li><a href="javascript:;" no="037" name="b">北京大学宝石鉴定中心深圳实验室</a></li>
-							<li><a href="javascript:;" no="007" name="b">北京地大宝石检验中心</a></li>
-							<li><a href="javascript:;" no="033" name="b">北京协宝珠宝检测中心(BXB)</a></li>
-							<li><a href="javascript:;" no="035" name="f">福建省贵金属和珠宝玉石产品质量监督检验中心</a></li>
-							<li><a href="javascript:;" no="029" name="g">广东省地质科学研究所珠宝玉石鉴定中心</a></li>
-							<li><a href="javascript:;" no="008" name="g">广东省金银珠宝检测中心(GDTC)</a></li>
-							<li><a href="javascript:;" no="009" name="g">广东省珠宝玉石及贵金属检测中心(GTC)</a></li>
-							<li><a href="javascript:;" no="023" name="g">广东省珠海市金银珠宝检测中心</a></li>
-							<li><a href="javascript:;" no="013" name="g">国家黄金钻石制品质量监督检验中心(NGDTC)</a></li>
-							<li><a href="javascript:;" no="003" name="g">国家金银制品质量鉴督检验中心(南京)(NGSTC)</a></li>
-							<li><a href="javascript:;" no="002" name="g">国家首饰质量监督检验中心(NJQSIC)</a></li>
-							<li><a href="javascript:;" no="001" name="g">国家珠宝玉石质量监督检验中心(NGTC)</a></li>
-							<li><a href="javascript:;" no="022" name="g">国土资源部广州矿产资源监督检测中心</a></li>
-							<li><a href="javascript:;" no="041" name="g">国土资源部郑州矿产资源利用评价中心</a></li>
-							<li><a href="javascript:;" no="043" name="g">国土资源部贵阳矿产资源监督检测中心(GGIC)</a></li>
-							<li><a href="javascript:;" no="024" name="h">华东理工大学宝石检测中心</a></li>
-							<li><a href="javascript:;" no="032" name="j">江苏省黄金珠宝检测中心</a></li>
-							<li><a href="javascript:;" no="025" name="l">辽宁省宝玉石质量监督检验中心</a></li>
-							<li><a href="javascript:;" no="036" name="s">上海珠宝测试鉴定处</a></li>
-							<li><a href="javascript:;" no="039" name="s">陕西省宝玉石金银首饰质量监督检验站</a></li>
-							<li><a href="javascript:;" no="014" name="x">新疆岩矿宝玉石产品质量监督检验站</a></li>
-							<li><a href="javascript:;" no="034" name="y">燕山大学珠宝玉石鉴定研究中心</a></li>
-							<li><a href="javascript:;" no="027" name="y">云南省德宏州质量技术监督瑞丽监测站</a></li>
-							<li><a href="javascript:;" no="011" name="y">云南省珠宝玉石质量监督检验研究院</a></li>
-							<li><a href="javascript:;" no="012" name="z">浙江省黄金珠宝饰品质量检测中心(GGC)</a></li>
-							<li><a href="javascript:;" no="004" name="z">中国地质大学(武汉)珠宝检测中心(GIC)</a></li>
-							<li><a href="javascript:;" no="021" name="z">中国商业联合会珠宝首饰质量监督检测中心(CGJC)</a></li>
-							<li><a href="javascript:;" no="006" name="z">中华全国工商联珠宝业商会珠宝检测研究中心(CCGTC)</a></li>
-							<li><a href="javascript:;" no="010" name="z">中检质技(北京)金银珠宝质量检验中心(CQT)</a></li>
-							<li><a href="javascript:;" no="030" name="z">中维珠宝玉石质量检测中心(JWJC)</a></li>
+								{
+									this.state.list_msg.Domestic.map((val,i) => {
+										return (
+											<li key={i} onClick={(e) => this.props.selectApp(e,val)} ><a href="javascript:;">{val}</a></li>
+										)
+									})
+								}
 							</ul>
 						</div>
 					</div>
-					<div className="abroad_org orgarea" m="国外" style={{display: 'none'}}>
+					<div className={"abroad_org orgarea"+" "+(this.state.c_state==2?'show':'hide')} m="国外">
 						<div className="stock_org">
 							<ul>
-							<li><a href="javascript:;" no="017">比利时钻石高层议会(HRD)</a></li>
-							<li><a href="javascript:;" no="019">国际宝石学院(IGI)</a></li>
-							<li><a href="javascript:;" no="016">美国宝石学院(GIA)</a></li>
-							<li><a href="javascript:;" no="018">美国宝玉石协会(AGS)</a></li>
+								{
+									this.state.list_msg.Abroad.map((val,i) => {
+										return (
+											<li key={i} onClick={(e) => this.props.selectApp(e,val)} ><a href="javascript:;">{val}</a></li>
+										)
+									})
+								}
 							</ul>
 						</div>
 					</div>
@@ -137,7 +165,8 @@ class HomeLogin extends React.Component {
 		super() ;
 		this.state = {
 			loginState:'珠宝玉石鉴定证书真伪查询，让你放心买珠宝',
-			p_state:0, //一级选项状态
+			appraisal:'', // 选中鉴定机构名称
+			p_state:0, // 选择菜单显示状态
 		}
 	}
 	showSelect (e){
@@ -147,6 +176,15 @@ class HomeLogin extends React.Component {
 		this.setState({
 			p_state:1
 		})
+	}
+	selectAppraisal (e,val){
+		e.stopPropagation()
+		this.setState({
+			appraisal:val,
+			p_state:0
+		})
+	
+
 	}
 	render (){
 		return (
@@ -159,9 +197,9 @@ class HomeLogin extends React.Component {
 					<div className="operation_m_first" onClick={(e) => this.showSelect(e)}>
 						<div className="operation_m_firstdiv">
 							<span className="operation_m_firstspan"></span>					
-							<input type="text" placeholder="请输入或选择鉴定机构名称" readOnly="readOnly" />
+							<input type="text" placeholder="请输入或选择鉴定机构名称" readOnly="readOnly" value={this.state.appraisal} />
 						</div>
-						<UserSelect pState = {this.state.p_state}/>
+						<UserSelect pState={this.state.p_state} selectApp={this.selectAppraisal.bind(this)}/>
 					</div>
 					<div className="operation_m_last">
 						<div>
