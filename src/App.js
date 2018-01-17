@@ -5,15 +5,17 @@ import {
 } from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
-import  Home from './components/home.js'
+import Home from './components/home.js'
+import Detail from './components/detail.js'
 class App extends Component {
   render() {
     return (
-        <Router>
-            <div id="App">
+        <Router>     
                 {/*一级子组件引入 */}
+            <div>
                 <Route exact path="/" component={Home} />
-            </div>
+                <Route exact path="/detail" component={Detail} />   
+            </div>    
         </Router>
     );
   }

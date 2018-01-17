@@ -8,3 +8,9 @@ body{overflow: hidden;
   background-color: #e8e8e8;
 }
 li{list-style-type: none;}
+.show{
+	display: block;
+}
+.hide{
+	display: none;
+}

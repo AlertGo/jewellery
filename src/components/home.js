@@ -1,6 +1,11 @@
 import React from 'react'
 import '.././css/home.css'
 import logoimg from '.././img/logo.png'
+// 移除空白符
+String.prototype.Trim = function()  {  
+    return this.replace(/(^\s*)|(\s*$)/g, "");  
+}  
+
 // 无状态组件 LOGO
 const HomeLogo = () => (
 	<div className="home_logo">
@@ -189,6 +194,8 @@ class HomeLogin extends React.Component {
 		this.state = {
 			loginState:'珠宝玉石鉴定证书真伪查询，让你放心买珠宝',
 			appraisal:'', // 选中鉴定机构名称
+			id_number:'', // 证书编号
+			id_weight:'', // 证书重量
 			p_state:0, // 选择菜单显示状态
 		}
 	}
@@ -206,8 +213,14 @@ class HomeLogin extends React.Component {
 			appraisal:val,
 			p_state:0
 		})
-	
-
+	}
+	queryNext (){
+		var data = {
+			idname:this.state.appraisal.Trim(),
+			idnumer:this.state.id_number.Trim(),
+			idweight:this.state.id_weight.Trim()
+		}
+		console.log(data)
 	}
 	render (){
 		return (
@@ -231,7 +244,7 @@ class HomeLogin extends React.Component {
 						<div>
 							<input type="text" placeholder="重量" />
 						</div>
-						<button className="query_btn">查询</button>
+						<button className="query_btn" onClick={() => {this.queryNext()}}>查询</button>
 					</div>
 				</div>
 			</div>
