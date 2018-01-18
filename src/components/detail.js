@@ -1,18 +1,46 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import logoimg from '.././img/logo.png'
-import '.././css/home.css'
+import '.././css/detail.css'
+import {
+	 Header,
+	 CurrBtm 
+} from './public.js'
+class Result extends React.Component {
+	constructor (){
+		super() ;
+	}
+	render (){
+		return (
+			<div className='detail_result'>
+				<div className='result_left'>
+					<div className="result_company">
+						<div className="result_company_logo">
+							<div></div>
+						</div>
+						<ul>
+							<li>
+								<span>鉴定机构</span>
+								<span>123</span>
+							</li>
+							<li>
+								<span>机构资质</span>
+								<span></span>
+							</li>
+							<li>
+								<span>鉴定结论</span>
+								<span>123</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div className='result_right'>
 
-const Header = () => (
-	<div>
-		<img src={logoimg} alt="360珠宝" />
-		<ul>
-			<li><Link to="/">首页</Link></li>
-			<li><Link to="/">查询帮助</Link></li>
-			<li><Link to="/">证书知识</Link></li>
-		</ul>
-	</div>
-)
+				</div>
+			</div>
+		)
+	}
+}
+
 class Details extends React.Component {
 	constructor (){
 		super() ;
@@ -21,8 +49,9 @@ class Details extends React.Component {
 	render (){
 		return (
 			<div>
-				<Header/>
-				
+				<Header />
+				<Result />
+				<CurrBtm />
 			</div>
 		)
 	}

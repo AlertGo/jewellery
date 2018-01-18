@@ -1,0 +1,50 @@
+@media screen and (min-width:640px){
+	/*通用头部 nav*/
+	.detail_nav{
+		width: 100%;
+		height: 58px;
+		background: url(../img/top_bg.png) repeat-x;
+		font-size: 0;
+		padding-left: 27px;
+		padding-right: 27px;
+	}
+	.detail_nav img,.detail_nav ul {
+		display: inline-block;
+		vertical-align: top;
+	}
+	.detail_nav img{
+		width: 127px;
+		/*height: 48px;*/
+		margin-right: 27px;
+	}
+	.detail_nav ul li{
+		font-size: 16px;
+		color: #444444;
+		display: inline-block;
+		vertical-align: top;
+		width: 110px;
+		line-height: 58px;
+		text-align: center;
+	}
+	.detail_nav ul li a{
+		display: block;
+		color: #444444;
+		height:54px;
+	}
+	.detail_nav ul li a:hover{
+		background-color: #F0F0F0
+	}
+	/*通用底部*/
+	.footer {
+    	padding: 20px 0 110px;
+    	color: #999;
+    	line-height: 24px;
+   	 	text-align: center;
+   	 	font-size: 12px;
+	}
+	.footer a, .footer a:visited {
+    	margin: 0 8px;
+    	color: #888;
+	}
+	
+}

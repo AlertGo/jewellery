@@ -144,18 +144,7 @@ input::-webkit-input-placeholder{
 	.query_btn:hover{
 	    background: url(../img/index.png) no-repeat -281px -100px;
 	}
-	/*通用底部*/
-	.footer {
-    	padding: 20px 0 110px;
-    	color: #999;
-    	line-height: 24px;
-   	 	text-align: center;
-   	 	font-size: 12px;
-	}
-	.footer a, .footer a:visited {
-    	margin: 0 8px;
-    	color: #888;
-	}
+
 	/*选择机构*/
 .allorg, .allorg_sec {
     position: absolute;
