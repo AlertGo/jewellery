@@ -24,7 +24,32 @@ class Result extends React.Component {
 							</li>
 							<li>
 								<span>机构资质</span>
-								<span></span>
+								<span className="Qualifications">
+									<img src={require('.././img/institution01.jpg')}/>
+									<img src={require('.././img/institution05.jpg')}/>
+								</span>
+							</li>
+							<li>
+								<span>鉴定结论</span>
+								<span>123</span>
+							</li>
+						</ul>
+					</div>
+					<div className="result_company">
+						<div className="result_company_logo">
+							<div></div>
+						</div>
+						<ul>
+							<li>
+								<span>鉴定机构</span>
+								<span>123</span>
+							</li>
+							<li>
+								<span>机构资质</span>
+								<span className="Qualifications">
+									<img src={require('.././img/institution01.jpg')}/>
+									<img src={require('.././img/institution05.jpg')}/>
+								</span>
 							</li>
 							<li>
 								<span>鉴定结论</span>

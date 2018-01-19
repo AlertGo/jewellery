@@ -146,121 +146,121 @@ input::-webkit-input-placeholder{
 	}
 
 	/*选择机构*/
-.allorg, .allorg_sec {
-    position: absolute;
-    top: 33px;
-    left: 0;
-    width: 402px;
-    height: 262px;
-    padding: 8px;
-    border: 1px solid #aaa;
-    border-top: 0;
-    background-color: #fff;
-    z-index: 100;
-}
-.allorg h4 {
-    padding: 0 3px 3px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: normal;
-    text-align: center;
-    border-bottom: 1px dotted #CCC;
-}
-.hot_ctg, .cat {
-    height: 22px;
-    border-bottom: 1px solid #e2e2e2;
-}
-.hot_ctg .citeon {
-    color: #08c;
-    background-color: #f6f6f6;
-}
+	.allorg, .allorg_sec {
+	    position: absolute;
+	    top: 33px;
+	    left: 0;
+	    width: 402px;
+	    height: 262px;
+	    padding: 8px;
+	    border: 1px solid #aaa;
+	    border-top: 0;
+	    background-color: #fff;
+	    z-index: 100;
+	}
+	.allorg h4 {
+	    padding: 0 3px 3px;
+	    margin-bottom: 8px;
+	    font-size: 14px;
+	    font-weight: normal;
+	    text-align: center;
+	    border-bottom: 1px dotted #CCC;
+	}
+	.hot_ctg, .cat {
+	    height: 22px;
+	    border-bottom: 1px solid #e2e2e2;
+	}
+	.hot_ctg .citeon {
+	    color: #08c;
+	    background-color: #f6f6f6;
+	}
 
-.hot_ctg li {
-    position: relative;
-    float: left;
-    cursor: pointer;
-    font-size: 13px;
-    margin-right: 10px;
-    width: 45px;
-    height: 21px;
-    border: 1px solid #e2e2e2;
-    border-bottom: 0;
-    text-align: center;
-    font-family: "微软雅黑",arial;
-    line-height: 22px;
-}	
-.hot_ctg .arrow {
-    position: absolute;
-    top: 19px;
-    left: 18px;
-    display: inline-block;
-    width: 9px;
-    height: 6px;
-    background: url(../img/index.png) no-repeat -335px 0;
-    top: 21px;
-}
-.hot_ctg .al {
-    line-height: 22px;
-}
-.clearfix {
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden;
-    font-size: 0;
-    content: ".";
-}
-.stock_org {
-    padding-top: 12px;
-}
-.stock_org li {
-    height: 25px;
-}
-.cat {
-    height: 32px;
-}
-.cat ul {
-	height: 32px;
-	font-size: 0px;
-}
-.cat li {
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    width: 45px;
-    margin-top: 10px;
-    padding-bottom: 3px;
-    text-align: center;
-    line-height: 22px;
-    font-size: 12px;
-    left: 0;
-    top: 0;
-}
-.cat .citeon {
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    display: inline-block;
-    width: 45px;
-    height: 4px;
-    background: url(../img/line.png) no-repeat bottom center;
-}
-.gn ul {
-    width: 402px;
-    height: 154px;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-.stock_org a, .stock_org a:visited {
-    color: #444;
-}
-a {
-    color: #08c;
-    text-decoration: none;
-    outline: 0;
-    font-size: 12px;
-}
+	.hot_ctg li {
+	    position: relative;
+	    float: left;
+	    cursor: pointer;
+	    font-size: 13px;
+	    margin-right: 10px;
+	    width: 45px;
+	    height: 21px;
+	    border: 1px solid #e2e2e2;
+	    border-bottom: 0;
+	    text-align: center;
+	    font-family: "微软雅黑",arial;
+	    line-height: 22px;
+	}	
+	.hot_ctg .arrow {
+	    position: absolute;
+	    top: 19px;
+	    left: 18px;
+	    display: inline-block;
+	    width: 9px;
+	    height: 6px;
+	    background: url(../img/index.png) no-repeat -335px 0;
+	    top: 21px;
+	}
+	.hot_ctg .al {
+	    line-height: 22px;
+	}
+	.clearfix {
+	    display: block;
+	    clear: both;
+	    height: 0;
+	    visibility: hidden;
+	    font-size: 0;
+	    content: ".";
+	}
+	.stock_org {
+	    padding-top: 12px;
+	}
+	.stock_org li {
+	    height: 25px;
+	}
+	.cat {
+	    height: 32px;
+	}
+	.cat ul {
+		height: 32px;
+		font-size: 0px;
+	}
+	.cat li {
+	    cursor: pointer;
+	    position: relative;
+	    display: inline-block;
+	    vertical-align: top;
+	    width: 45px;
+	    margin-top: 10px;
+	    padding-bottom: 3px;
+	    text-align: center;
+	    line-height: 22px;
+	    font-size: 12px;
+	    left: 0;
+	    top: 0;
+	}
+	.cat .citeon {
+	    position: absolute;
+	    left: 0;
+	    bottom: -2px;
+	    display: inline-block;
+	    width: 45px;
+	    height: 4px;
+	    background: url(../img/line.png) no-repeat bottom center;
+	}
+	.gn ul {
+	    width: 402px;
+	    height: 154px;
+	    overflow-x: hidden;
+	    overflow-y: auto;
+	}
+	.stock_org a, .stock_org a:visited {
+	    color: #444;
+	}
+	a {
+	    color: #08c;
+	    text-decoration: none;
+	    outline: 0;
+	    font-size: 12px;
+	}
 }
 /***
 	mobile
