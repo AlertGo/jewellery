@@ -202,7 +202,11 @@ class HomeLogin extends React.Component {
 			idnumer:this.state.id_number.Trim(),
 			idweight:this.state.id_weight.Trim()
 		}
-		console.log(data)
+		var _self = this ;
+		var str = 'numbercode=C71888888'
+		this.postAjax('http://localhost:8006/public/login',str,function (data){
+			console.log(data)
+		})
 	}
 	render (){
 		return (
@@ -232,6 +236,22 @@ class HomeLogin extends React.Component {
 			</div>
 		)
 	}
+	postAjax (url,data,callback){
+        fetch(url,{
+        	method:"POST",
+        	headers:{
+			"Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+			},
+        	body:data
+        })
+        .then((data)=>data.json())
+        .then((data)=>{ 
+        	callback(data) 		
+        })
+        .catch((x)=>{
+            console.log(x)
+        })
+    }
 }
 
 // 渲染

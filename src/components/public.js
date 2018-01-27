@@ -8,12 +8,14 @@ import '.././css/public.css'
 // 通用导航
 const Header = () => (
     <div className="detail_nav">
-        <img src={logoimg} alt="360珠宝" />
-        <ul>
-            <li><Link to="/">首页</Link></li>
-            <li><Link to="/">查询帮助</Link></li>
-            <li><Link to="/">证书知识</Link></li>
-        </ul>
+        <div>
+            <img src={logoimg} alt="360珠宝" />
+            <ul>
+                <li><Link to="/">首页</Link></li>
+                <li><Link to="/">查询帮助</Link></li>
+                <li><Link to="/">证书知识</Link></li>
+            </ul>
+        </div>
     </div>
 )
 // 通用底部
