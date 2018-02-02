@@ -5,6 +5,9 @@
 	width: 100% ; 
 	height: 100% ;
 }
+.col_red{
+	color: red
+}
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #EEEEEE; opacity:1; 
 }

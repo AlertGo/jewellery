@@ -14,7 +14,7 @@ class App extends Component {
                 {/*一级子组件引入 */}
             <div>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/detail" component={Detail} />   
+                <Route path="/detail" component={Detail} />   
             </div>    
         </Router>
     );

@@ -1,4 +1,11 @@
 import React from 'react'
+import {
+  Route,
+  NavLink,
+  Link,
+  Switch
+} from 'react-router-dom'
+import PropTypes from 'prop-types'
 import '.././css/home.css'
 import logoimg from '.././img/logo.png'
 import { CurrBtm } from './public.js'
@@ -175,11 +182,13 @@ class HomeLogin extends React.Component {
 		super() ;
 		this.state = {
 			loginState:'珠宝玉石鉴定证书真伪查询，让你放心买珠宝',
+			loginStateCode:0,
 			appraisal:'', // 选中鉴定机构名称
 			id_number:'', // 证书编号
 			id_weight:'', // 证书重量
 			p_state:0, // 选择菜单显示状态
 		}
+		console.log(PropTypes)
 	}
 	showSelect (e){
 		// console.log(e)
@@ -196,16 +205,50 @@ class HomeLogin extends React.Component {
 			p_state:0
 		})
 	}
+	loginIptChange (e,flag){
+		console.log(e.currentTarget.value,flag)
+		var val = e.currentTarget.value ;
+		if(flag==1){
+			this.setState({
+				id_number:val
+			})
+		}else{
+			this.setState({
+				id_weight:val
+			})
+		}
+	}
 	queryNext (){
+		var _self = this ;
 		var data = {
 			idname:this.state.appraisal.Trim(),
 			idnumer:this.state.id_number.Trim(),
 			idweight:this.state.id_weight.Trim()
 		}
-		var _self = this ;
-		var str = 'numbercode=C71888888'
-		this.postAjax('http://localhost:8006/public/login',str,function (data){
-			console.log(data)
+		if(data.idname==''){
+			this.setState({
+				loginState:'请选择本站支持的鉴定机构',
+				loginStateCode:1
+			}) ;
+			return false 
+		}
+		if(data.idnumer==''){
+			this.setState({
+				loginState:'请输入证书编号',
+				loginStateCode:1
+			}) ;
+			return false 
+		}
+		if(data.idweight==''){
+			this.setState({
+				loginState:'请输入证书详细质量',
+				loginStateCode:1
+			}) ;
+			return false 
+		}
+		this.context.router.history.push({
+			pathname:'/detail',
+			state:data
 		})
 	}
 	render (){
@@ -213,7 +256,7 @@ class HomeLogin extends React.Component {
 			<div className="home_operation">
 				<div className="operation_head">
 					<span className="operation_head_bg"></span>
-					<span>{this.state.loginState}</span>
+					<span className={this.state.loginStateCode?'col_red':''}>{this.state.loginState}</span>
 				</div>
 				<div className="operation_main">
 					<div className="operation_m_first" onClick={(e) => this.showSelect(e)}>
@@ -225,10 +268,10 @@ class HomeLogin extends React.Component {
 					</div>
 					<div className="operation_m_last">
 						<div>
-							<input type="text" placeholder="证书编号" />
+							<input type="text" placeholder="证书编号" onChange={(e) => this.loginIptChange(e,1)} />
 						</div>
 						<div>
-							<input type="text" placeholder="重量" />
+							<input type="text" placeholder="重量" onChange={(e) => this.loginIptChange(e,2)} />
 						</div>
 						<button className="query_btn" onClick={() => {this.queryNext()}}>查询</button>
 					</div>
@@ -248,10 +291,15 @@ class HomeLogin extends React.Component {
         .then((data)=>{ 
         	callback(data) 		
         })
-        .catch((x)=>{
-            console.log(x)
+        .catch((e)=>{
+            console.log(e)
         })
     }
+}
+
+
+HomeLogin.contextTypes = {
+    router:PropTypes.object
 }
 
 // 渲染
