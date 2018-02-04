@@ -48,6 +48,7 @@
 		width: 100%;
 		padding-top: 30px;
 		padding-bottom: 30px;
+		height: 200px;
 	}
 	.result_company_logo div{
 		width: 130px;
@@ -62,8 +63,8 @@
 		margin: auto;
 	}
 	.result_company ul{
-		width: 462px;
-		padding-left: 15px;
+		width: 430px;
+		padding-left: 20px;
 		padding-top: 15px;
 		box-sizing: border-box;
 		font-weight: bold;
@@ -79,6 +80,10 @@
 		line-height: 43px;
 		height: 43px;
 		padding-right: 30px;
+	}
+	.result_company ul li span.spaninit{
+		width: 90px;
+		text-align: right;
 	}
 	.Qualifications{
 		width: 200px;

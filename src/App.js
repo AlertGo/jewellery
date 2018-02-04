@@ -7,6 +7,8 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './components/home.js'
 import Detail from './components/detail.js'
+import AdimgHome from './components/adminhome.js'
+
 class App extends Component {
   render() {
     return (
@@ -14,7 +16,8 @@ class App extends Component {
                 {/*一级子组件引入 */}
             <div>
                 <Route exact path="/" component={Home} />
-                <Route path="/detail" component={Detail} />   
+                <Route path="/detail" component={Detail} />  
+                <Route path="/admin" component={AdimgHome} />    
             </div>    
         </Router>
     );

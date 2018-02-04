@@ -1,0 +1,134 @@
+import React from "react"
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import Aside from './newsimg'
+import Aside2 from './newslist'
+import Storage from './Storage'
+
+import Replacesnews from './newsreplace'
+
+const { Header, Content, Footer, Sider } = Layout;
+const SubMenu = Menu.SubMenu;
+
+export default class SiderDemo extends React.Component {
+  state = {
+    collapsed: false,
+    mode: 'inline',
+    id:-1,
+    guideA:"",
+    guideB:""
+  };
+  onCollapse = (collapsed) => {
+    console.log(collapsed);
+    this.setState({
+      collapsed,
+      mode: collapsed ? 'vertical' : 'inline',
+    });
+  }
+  ck(x){
+    return (e) => {
+      //指引一
+      let guideA=this.refs.nav_text.innerHTML;
+      //指引二
+      let guideB=e.currentTarget.innerHTML;
+      this.setState({
+          guideA:guideA,
+          guideB:guideB,
+          id:x
+      })
+    }
+  }
+  render() {
+    return (
+      <Layout>
+        <Sider
+          collapsible
+          collapsed={this.state.collapsed}
+          onCollapse={this.onCollapse}
+        >
+          <div className="logo" />
+          <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={['6']}>
+            <SubMenu
+              key="sub1"
+              title={<span><Icon type="user" /><span className="nav-text" ref="nav_text">数据存储</span></span>}
+            >
+              <Menu.Item key="1">
+                 <div onClick={this.ck(0)}>banner_news</div>
+              </Menu.Item>
+              <Menu.Item key="2">
+                 <div onClick={this.ck(1)}>list_news</div>
+              </Menu.Item>
+              <Menu.Item key="3">
+                 <div onClick={this.ck(2)}>replace_news</div>
+              </Menu.Item>
+                <Menu.Item key="4">
+                 <div onClick={this.ck(3)}>证书入库</div>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu
+              key="sub2"
+              title={<span><Icon type="team" /><span className="nav-text">Team</span></span>}
+            >
+              <Menu.Item key="4">Team 1</Menu.Item>
+              <Menu.Item key="5">Team 2</Menu.Item>
+            </SubMenu>
+            <Menu.Item key="6">
+              <span>
+                <Icon type="file" />
+                <span className="nav-text" onClick={this.ck(-1)}>File</span>
+              </span>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Header style={{ background: '#fff', padding: 0 ,textIndent:30,fontSize:20}}>宝玉轩__后台管理</Header>
+          <Content style={{ margin: '0 16px' }}>
+            <Breadcrumb style={{ margin: '12px 0' }}>
+              <Breadcrumb.Item>{this.state.guideA}</Breadcrumb.Item>
+              <Breadcrumb.Item>{this.state.guideB}</Breadcrumb.Item>
+            </Breadcrumb>
+            {/*******
+              默认界面
+              **/}
+            <div style={{ padding: 24, background: '#fff', minHeight: 360, height:"auto" , height:"800px"}} className={-1==this.state.id?"":"Main_none"}>
+                <ul id="news_ul">
+                    <li>Tip > 证书入库系统
+                         <ul>
+                            <li>图片手动入库</li>
+                            <li>反馈图片路径</li>
+                            <li>保存证书相关信息</li>
+                         </ul>
+                    </li>
+
+                </ul>
+            </div>  
+             {/***********
+              图片添加与删除
+              */}
+            <div style={{ padding: 24, background: '#fff', minHeight: 360, height:"auto" }} className={0==this.state.id?"":"Main_none"}>
+              <Aside />
+            </div>
+             {/******
+              新闻添加
+              */}
+            <div style={{ padding: 24, background: '#fff', minHeight: 360, height:"auto" }} className={1==this.state.id?"":"Main_none"}>
+              <Aside2  />
+            </div>
+            {/*****
+              替换页
+              */}
+            <div style={{ padding: 24, background: '#fff', minHeight: 360, height:"auto" }} className={2==this.state.id?"":"Main_none"}>
+              <Replacesnews />          
+            </div>
+            <div style={{ padding: 24, background: '#fff', minHeight: 360, height:"auto" }} className={3==this.state.id?"":"Main_none"}>
+              <Storage />          
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            Ant Design ©2016 Created by Ant UED
+          </Footer>
+        </Layout>
+      </Layout>
+    );
+  }
+}
+

@@ -35,6 +35,7 @@ class Result extends React.Component {
 					{name:'检测编号',state:1,value:'c1711766662'},
 				],
 				resultimg:logoimg,
+				result:'正在查询，请稍等...' //鉴定机构结论
 
 			}
 		}
@@ -48,18 +49,83 @@ class Result extends React.Component {
 		this.setState({
 			resultname:data.idname 
 		})
-		var strData = 'code='+data.idnumer+'&weight='+data.idweight ;
-		this.postAjax('/public/login',strData,function (data){
-			console.log(data)
+		if(data.idname!='北大宝石鉴定中心'){
+			setTimeout(function (){
+				_self.setState({
+					isloding:false,
+					resultstate:20,
+					data:{list:[],result:'无',resultimg:logoimg}
+				}) 
+			},3e3)
+			return false ;
+		}
+
+		var strData = 'numbercode='+data.idnumer+'&weight='+data.idweight ;
+		this.postAjax('/public/login',strData,function (d){
+			console.log(d)
+			if(d.errcode==0){
+				var data = {} ;
+				data.list = [] ;
+				for(var k in d.data){
+					console.log(k)
+					switch(k){
+						case 'number':
+							data.list.push({name:'检测编号',value:d.data[k]}) ;
+							break ;
+						case 'weight':
+							data.list.push({name:'总重量',value:d.data[k]}) ;
+							break ;
+
+						case 'shape':
+							data.list.push({name:'形状',value:d.data[k]}) ;
+							break ;
+						case 'jname':
+							data.list.push({name:'主石名称',value:d.data[k]}) ;
+							break ;
+						case 'coloe':
+							data.list.push({name:'颜色',value:d.data[k]}) ;
+							break ;
+						case 'refractive':
+							data.list.push({name:'折射率',value:d.data[k]}) ;
+							break ;
+						case 'density':
+							data.list.push({name:'密度',value:d.data[k]}) ;
+							break ;
+						case 'enlarge':
+							data.list.push({name:'放大检查',value:d.data[k]}) ;
+							break ;
+						case 'remarks':
+							data.list.push({name:'备注',value:d.data[k]}) ;
+							break ;
+						case 'gemmologist':
+							data.list.push({name:'鉴定师',value:d.data[k]}) ;
+							break ;
+						case 'auditor':
+							data.list.push({name:'审核人',value:d.data[k]}) ;
+							break ;
+						case 'imgurl':
+							data.resultimg = d.data[k] ;
+							break ;
+						case 'result':
+							data.result = d.data[k] ;
+							break ;
+					}
+
+				}
+				console.log(data)
+				_self.setState({
+					isloding:false,
+					resultstate:10,
+					data:data
+				}) 
+			}else{
+				_self.setState({
+					isloding:false,
+					resultstate:20,
+					data:{list:[],result:'无',resultimg:logoimg}
+				}) 
+			}
 		})
-		// 模拟未找到
-		setTimeout(function (){
-			_self.setState({
-				isloding:false,
-				resultstate:20,
-				resultconclusion:'无'
-			})
-		},1000)
 	}
 	gotoHomepage (){
 		this.context.router.history.push({
@@ -90,7 +156,7 @@ class Result extends React.Component {
 							</li>
 							<li>
 								<span>鉴定结论</span>
-								<span>{this.state.resultconclusion}</span>
+								<span>{this.state.data.result}</span>
 							</li>
 						</ul>
 					</div>
@@ -107,8 +173,8 @@ class Result extends React.Component {
 										this.state.data.list.map((v,i) => {
 											// console.log(this.state.data.resultimg?'1':'2')
 											return (
-												<li className={v.state==0?'':'hide'} key={i}>
-													<span>{v.name}</span>
+												<li key={i}>
+													<span className="spaninit">{v.name}:</span>
 													<span>{v.value}</span>
 												</li>
 											)
@@ -118,7 +184,8 @@ class Result extends React.Component {
 							</div>
 							{/*获取鉴定信息失败*/}
 							<div className={'result_fail'+' '+(this.state.resultstate==20?'show':'hide')}>
-								<p>抱歉，暂时没有找到该证书信息，请您确认您的信息是否输入正确， 并尝试重新查询.</p>
+								<p>抱歉，暂时没有找到该证书信息，请您确认您的信息是否输入正确， 并尝试重新查询。</p>
+								<p style={{fontSize:'12px',color:'#999999',paddingBottom:'10px'}}>小提示：请确认您所选鉴定机构是否与证书对应</p>
 								<button onClick={() => this.gotoHomepage()}>重新查询</button>
 							</div>
 
@@ -147,8 +214,9 @@ class Result extends React.Component {
 			</div>
 		)
 	}
+	
 	postAjax (url,data,callback){
-        fetch('http://119.29.59.143:3000'+url,{
+        fetch('http://localhost:8006'+url,{
         	method:"POST",
         	headers:{
 			"Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
