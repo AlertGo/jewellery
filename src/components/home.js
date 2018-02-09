@@ -73,7 +73,7 @@ class UserSelect extends React.Component {
 		}
 	}
 	componentDidMount (){
-		console.log(this)
+
 	}
 	showTabState (x,title){
 		this.setState({
@@ -190,10 +190,18 @@ class HomeLogin extends React.Component {
 		}
 		console.log(PropTypes)
 	}
+	componentDidMount (){
+		var _self = this ;
+		document.addEventListener('click',function (){
+			_self.setState({
+				p_state:0
+			})
+		})
+	}
 	showSelect (e){
-		// console.log(e)
+		
 		e.stopPropagation() ;
-		// e.nativeEvent.stopImmediatePropagation()
+		e.nativeEvent.stopImmediatePropagation()
 		this.setState({
 			p_state:1
 		})

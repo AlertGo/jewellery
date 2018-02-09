@@ -19,28 +19,24 @@
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+   
     <script type="text/javascript">
-        (function (doc, win) {
-            var docEl = doc.documentElement,
-                resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
-                recalc = function () {
-                    var clientWidth = docEl.clientWidth;
-                    if (!clientWidth) return;
-                    if(clientWidth<=620){
-                      (function() { 
-                        var hm = document.createElement('script'); 
-                        hm.src = './ZRrem.js'; 
-                        var s = document.getElementsByTagName('script')[0]; 
-                        s.parentNode.insertBefore(hm, s); 
-                      })(); 
-                    }
-                };
-            if (!doc.addEventListener) return;
-            win.addEventListener(resizeEvt, recalc, false);
-            doc.addEventListener('DOMContentLoaded', recalc, false);
-        })(document, window);
+        // (function() { 
+        //     var clientWidth = document.documentElement.clientWidth;
+        //     if (!clientWidth) {
+        //         return false;
+        //     }
+        //     if(clientWidth<=620){
+        //         var hm = document.createElement('script'); 
+        //         hm.src = './ZRrem.js'; 
+        //         var s = document.getElementsByTagName('script')[0]; 
+        //         s.parentNode.insertBefore(hm, s); 
+        //         window.ready()
+        //     }
+        // })(); 
     </script>
+     -->
+    <script src="./ZRrem.js"></script>
     <title>React App</title>
   </head>
   <body>
